@@ -65,7 +65,7 @@
           
         </div>
 
-        <a href="#" class="btn">Download CV </a>
+        <a href="./KUSHAL -1.pdf" download class="btn">Download Resume </a>
       </div>
     </section>
 
@@ -98,7 +98,7 @@
           </div>
           <div class="bar">
             <div class="info">
-              <img src="Css.png" />
+              <img src="../portfolio/Css.png" />
               <span>CSS</span>
             </div>
           </div>
@@ -305,35 +305,71 @@ storage and scientific functions
     </section>
     <!-- Service page End -->
 
-    <!-- Contact page Starts -->
+
+
     <section class="contact" id="contact">
       <h2 class="heading">Contact <span>Me</span></h2>
-
-      <form action="#">
+    
+      <form id="contact-form">
         <div class="input-box">
-          <input type="text" placeholder="Full Name" />
-          <input type="Email" placeholder="Email" />
+          <input type="text" id="name" placeholder="Full Name" required />
+          <input type="email" id="email" placeholder="Email" required />
         </div>
-
+    
         <div class="input-box">
-          <input type="number" placeholder="Phone Number" />
-          <input type="text" placeholder="subject" />
+          <input type="tel" id="phone" placeholder="Phone Number" required />
+          <input type="text" id="subject" placeholder="Subject" required />
         </div>
-
+    
         <textarea
-          name=""
-          id=""
+          id="message"
           cols="30"
           rows="10"
           placeholder="Your Message"
+          required
         ></textarea>
         <input type="submit" value="Send Message" class="btn" />
       </form>
+    
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+      <script>
+        // Initialize EmailJS
+        emailjs.init("rYYCBKQSJ-QElnJ88"); // Replace with your EmailJS public key
+    
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form from reloading
+    
+          // Collect form data
+          const formData = {
+            from_name: document.getElementById("name").value,
+            from_email: document.getElementById("email").value,
+            phone_number: document.getElementById("phone").value,
+            subject: document.getElementById("subject").value,
+            message: document.getElementById("message").value,
+          };
+    
+          // Send email using the template ID
+          emailjs
+            .send("service_ps1nnj8", "template_qe2146g", formData)
+            .then(
+              (response) => {
+                alert("Message sent successfully!");
+                document.getElementById("contact-form").reset(); // Clear the form
+              },
+              (error) => {
+                alert("Failed to send message. Please try again later.");
+                console.error("EmailJS Error:", error);
+              }
+            );
+        });
+      </script>
     </section>
+    
 
-    <!-- Contact page End -->
 
-    <!-- Footer Section starts -->
+
+
+
 
     <footer class="footer">
         <div class="social">
